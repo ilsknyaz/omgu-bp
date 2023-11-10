@@ -1,24 +1,18 @@
+/*
+    Лабораторная работа №1 - Вычисление площади треугольников по формулам Герона и Гаусса
+*/
+
 #include <stdio.h>
 #include <math.h>
 
 // Расстояние между двумя точками (модуль)
-float distance(float x1, float y1, float x2, float y2) {
-    return fabs(sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2)));
-}
+float distance(float x1, float y1, float x2, float y2);
 
 // Формула Герона
-float areaOfTriangleGeron(float x1, float y1, float x2, float y2, float x3, float y3) {
-    float a = distance(x1, y1, x2, y2);
-    float b = distance(x2, y2, x3, y3);
-    float c = distance(x3, y3, x1, y1);
-    float p = (a + b + c) / 2;
-    return fabs(sqrt(p * (p - a) * (p - b) * (p - c)));
-}
+float areaOfTriangleGeron(float x1, float y1, float x2, float y2, float x3, float y3);
 
 // Формула Гаусса
-float areaOfTriangleGauss(float x1, float y1, float x2, float y2, float x3, float y3) {
-    return fabs((x1 * y2 + x2 * y3 + x3 * y1 - x2 * y1 - x3 * y2 - x1*y3) / 2);
-}
+float areaOfTriangleGauss(float x1, float y1, float x2, float y2, float x3, float y3);
 
 int main() {
     float ax, ay, bx, by, cx, cy, px, py;
@@ -69,4 +63,20 @@ int main() {
     }
     
     return 0;
+}
+
+float distance(float x1, float y1, float x2, float y2) {
+    return fabs(sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2)));
+}
+
+float areaOfTriangleGeron(float x1, float y1, float x2, float y2, float x3, float y3) {
+    float a = distance(x1, y1, x2, y2);
+    float b = distance(x2, y2, x3, y3);
+    float c = distance(x3, y3, x1, y1);
+    float p = (a + b + c) / 2;
+    return fabs(sqrt(p * (p - a) * (p - b) * (p - c)));
+}
+
+float areaOfTriangleGauss(float x1, float y1, float x2, float y2, float x3, float y3) {
+    return fabs((x1 * y2 + x2 * y3 + x3 * y1 - x2 * y1 - x3 * y2 - x1*y3) / 2);
 }
